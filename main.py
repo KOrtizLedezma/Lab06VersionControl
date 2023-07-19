@@ -16,9 +16,10 @@ def main():
 # do_options method, deals with the option picked by the user
 def do_options(option):
     if option == '1':
+        global new_password
         new_password = encode()
     elif option == '2':
-        pass
+        decode(new_password)
     elif option == '3':
         quit()
     else:
@@ -44,6 +45,17 @@ def encode():
     except ValueError:
         print('The password can only contain numbers')
     return new_password
+
+
+def decode(new_password):
+
+    password_decode_list = []
+    #convert to int and subtract 3 from every element of string
+    for i in new_password:
+        password_decode_list.append(abs(int(i) - 3))
+    #join list of integers into string
+    password_decode = ''.join(str(n) for n in password_decode_list)
+    print(f"The encoded password is {new_password}, and the original password is {password_decode}\n")
 
 
 if __name__ == '__main__':
