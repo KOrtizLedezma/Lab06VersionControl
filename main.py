@@ -1,6 +1,9 @@
 # Kenet Ortiz
 
 # Main of the program, controls the loop of the program
+new_password = ''
+
+
 def main():
     program_state = True
     while program_state:
@@ -19,7 +22,7 @@ def do_options(option):
         global new_password
         new_password = encode()
     elif option == '2':
-        decode(new_password)
+        decode()
     elif option == '3':
         quit()
     else:
@@ -29,6 +32,7 @@ def do_options(option):
 # encode option, encodes the 8 digits password typed by the user, returns the encoded password
 def encode():
     password = input('Please enter your password to encode: ')
+    global new_password
     new_password = ''
     try:
         if len(password) == 8:
@@ -47,17 +51,17 @@ def encode():
     return new_password
 
 
-def decode(new_password):
-
+def decode():
+    global new_password
     password_decode_list = []
-    #convert to int and subtract 3 from every element of string
+    # convert to int and subtract 3 from every element of string
     for i in new_password:
         if int(i) - 3 < 0:
             e = int(i) + 10 - 3
         else:
             e = int(i) - 3
         password_decode_list.append(e)
-    #join list of integers into string
+    # join list of integers into string
     password_decode = ''.join(str(n) for n in password_decode_list)
     print(f"The encoded password is {new_password}, and the original password is {password_decode}\n")
 
