@@ -52,7 +52,11 @@ def decode(new_password):
     password_decode_list = []
     #convert to int and subtract 3 from every element of string
     for i in new_password:
-        password_decode_list.append(abs(int(i) - 3))
+        if int(i) - 3 < 0:
+            e = int(i) + 10 - 3
+        else:
+            e = int(i) - 3
+        password_decode_list.append(e)
     #join list of integers into string
     password_decode = ''.join(str(n) for n in password_decode_list)
     print(f"The encoded password is {new_password}, and the original password is {password_decode}\n")
